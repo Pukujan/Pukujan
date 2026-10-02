@@ -7,80 +7,30 @@
 
 # Hi, I'm Pujan
 
-**AI engineer.** I automate the repetitive parts of engineering work, and I do it by building one component well and reusing it: reusable agent infrastructure, repeated pipeline stages, and the contracts that keep them honest.
+**I build systems that keep long AI projects from losing their place.** That is the whole job: the rules a project hands a fresh agent, the record of what it has already been through, and the routing that decides which model answers.
 
-**Long projects rarely fail because the work was too hard.** They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made. So I automate the parts that would otherwise be dropped.
+My featured project is **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh agent, and the agent starts with the right rules instead of guessing.
 
-You can [listen to the tour](https://pukujan.github.io/stylish-profile/docs/) if you would rather hear this than read it.
+Everything else below grows from that one habit: leave a trail behind you.
 
-## Start here
+## The market
 
-[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup) is the piece the rest sit on. The other three repositories here begin a session by loading it, so if it hands out the wrong rules, everything downstream is wrong in a way that still looks fine. That is why it comes first, and why it is the one to get right before anything else.
+The work is document-heavy AI systems: a contract, a filing, a case file, a policy pack. The models are good enough for it now. The failure has moved somewhere else.
 
-The [live module registry](https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json) lists what it can load, and [POLICY.md](https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md) says what it will refuse to do.
+**Long projects rarely fail because the work was too hard.** They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made.
 
-## What I'm building
+That shows up in four places. A fresh agent starts from a blank prompt and confidently invents a workflow. A pipeline is trusted because it ran once, and nobody can say what it produced last week. A page or an image reads like a template, because nothing decided how it should sound. And the choice of which model answers lives in twenty call sites, so it cannot change when the provider does.
 
-Document-heavy AI means the input is a contract, a filing, a case file, or a policy pack, and the output has to survive someone checking it. That work has two hard parts: making a model useful on messy real documents, and keeping a long project honest about what has actually been verified. **Everything below is tooling for the second part, plus the routing layer that decides which model or pipeline actually runs.**
+## What I do about it
 
-- **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing. ([listen, 0:27](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Agent%20Custom%20Setup.mp3))
-- **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** — long work survives a break: what changed, what was verified, and what is still open. ([listen, 0:29](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3))
-- **[Content Generation Modules](https://github.com/Pukujan/content-generation-modules)** — writing and images that sound like a person rather than a template. ([listen, 0:25](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Content%20Generation%20Modules.mp3))
-- **[Inference Recommendation Engine](https://github.com/Pukujan/inference-recommendation-engine)** — provider-neutral routing for model calls, decided by policy instead of a hard-coded provider. ([listen, 0:22](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3))
+I build one small tool for each of those four places, and I build each one once so it can be reused.
 
-One habit runs through all four: leave a trail behind you.
+- **A session starts from the rules your project actually uses, not a blank prompt.** A fresh agent begins with the right contract instead of confidently inventing a workflow.
+- **Long work survives a break.** What changed, what was checked and what is still open stays on the record, so the next person does not have to ask.
+- **Output sounds like a person, not a template.** Writing and images come out in your voice and your palette, so the result feels made rather than generated.
+- **The model route follows a policy.** Which model answers is decided by rule, so it can change when the provider does.
 
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
-
-Agent Custom Setup decides what rules a session starts with. Project Continuity Modules decides what survives between sessions. Content Generation Modules decides what the output sounds and looks like. Inference Recommendation Engine decides which model actually answers.
-
-<details>
-<summary>More about each project</summary>
-
-### Agent Custom Setup
-
-It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and **fails the install when it is not**. That check is the reason this page's own repository cannot silently drift from the versions it claims.
-
-*Why it exists:* an agent that starts from a blank prompt will confidently invent a workflow. One that starts from a checked contract will follow yours.
-
-### Project Continuity Modules
-
-Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; **a GitHub issue owns the scope**; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.
-
-*Why it exists:* the expensive failure is not a bad decision. It is a good decision that nobody recorded.
-
-### Content Generation Modules
-
-Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.
-
-*Why it exists:* a page that reads like a brochure is a page nobody finishes. This page is built with it.
-
-### Inference Recommendation Engine
-
-Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.
-
-*Why it exists:* provider choice changes monthly. The decision logic should not live in twenty call sites.
-
-</details>
-
-## How I work
-
-**Build it once.** One block, then two, then three, then a grid — and the original one turns yellow to mark which copy the rest came from.
-
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Reusable%20Blocks.gif#gh-light-mode-only" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="100%">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Reusable%20Blocks-dark.gif#gh-dark-mode-only" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="100%">
-
-**Run it once, get every result.** One push travels down the stem, the stem forks, and each branch finishes on its own.
-
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/One%20Push%20Many%20Pipelines.gif#gh-light-mode-only" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="100%">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif#gh-dark-mode-only" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="100%">
-
-Those are the two things I actually automate. Everything else on this page is downstream of them.
-
-## Tools
-
-Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitHub Actions
+The commits below are the honest version of that claim.
 
 <!-- TRACKING:START -->
 ## What's fresh
@@ -105,6 +55,69 @@ Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitH
 
 [All repositories](https://github.com/Pukujan?tab=repositories).
 <!-- TRACKING:END -->
+
+## Featured projects
+
+Four projects, each open on GitHub, each one a piece of the same habit.
+
+- **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing. ([listen, 0:27](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Agent%20Custom%20Setup.mp3))
+- **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** — long work survives a break: what changed, what was checked, and what is still open. ([listen, 0:29](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3))
+- **[Content Generation Modules](https://github.com/Pukujan/content-generation-modules)** — writing and images that sound like a person rather than a template. ([listen, 0:25](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Content%20Generation%20Modules.mp3))
+- **[Inference Recommendation Engine](https://github.com/Pukujan/inference-recommendation-engine)** — provider-neutral routing for model calls, decided by policy instead of a hard-coded provider. ([listen, 0:22](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3))
+
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
+
+Agent Custom Setup decides what rules a session starts with. Project Continuity Modules decides what survives between sessions. Content Generation Modules decides what the output sounds and looks like. Inference Recommendation Engine decides which model actually answers.
+
+<details>
+<summary>More about each project</summary>
+
+### Agent Custom Setup
+
+It pins the versions of the tools a project depends on, so a project cannot silently drift from the versions it claims.
+
+The [live module registry](https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json) lists what it can load, and [POLICY.md](https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md) says what it will refuse to do.
+
+*Why it exists:* an agent that starts from a blank prompt will confidently invent a workflow. One that starts from your project's own rules will follow yours.
+
+### Project Continuity Modules
+
+Long work survives a break. What changed, what was checked, and what is still open stays on the record, so the next person does not have to reconstruct it.
+
+*Why it exists:* the expensive failure is not a bad decision. It is a good decision that nobody recorded.
+
+### Content Generation Modules
+
+Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, so a page reads like it was written for someone.
+
+*Why it exists:* a page that reads like a brochure is a page nobody finishes. This page is built with it.
+
+### Inference Recommendation Engine
+
+Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider.
+
+*Why it exists:* provider choice changes monthly. The decision should not live in twenty call sites.
+
+</details>
+
+## How I work
+
+**Build it once.** One block, then two, then three, then a grid — and the original one turns yellow to mark which copy the rest came from.
+
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Reusable%20Blocks.gif#gh-light-mode-only" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Reusable%20Blocks-dark.gif#gh-dark-mode-only" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="100%">
+
+**Run it once, get every result.** One push travels down the stem, the stem forks, and each branch finishes on its own.
+
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/One%20Push%20Many%20Pipelines.gif#gh-light-mode-only" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif#gh-dark-mode-only" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="100%">
+
+Those are the two things I actually automate. Everything else on this page is downstream of them.
+
+## Tools
+
+Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitHub Actions
 
 ## Listen instead
 
